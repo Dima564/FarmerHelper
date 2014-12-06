@@ -106,6 +106,7 @@ public class NavigationDrawerFragment extends Fragment {
                         getString(R.string.nav_drawer_section_fields),
                         getString(R.string.nav_drawer_section_plants),
                         getString(R.string.nav_drawer_section_workers),
+                        "Qualifications"
                 }));
         mDrawerListView.setItemChecked(mCurrentSelectedPosition, true);
         return mDrawerListView;

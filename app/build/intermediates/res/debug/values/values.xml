@@ -190,6 +190,9 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="new_field_dialog_title">New Field</string>
+    <string name="new_qualification">New Qualification</string>
+    <string name="qualification_name">Name</string>
+    <string name="qualification_salary">Salary</string>
     <!-- From: file:/Users/kovalenkodima/Developer/FarmerHelper/app/src/main/res/values/sql.xml -->
     <eat-comment/>
     <string name="sql_create_table_fields">

@@ -84,6 +84,13 @@
                 android:singleLine="true"
                 android:text="Qualifications: "/>
 
+            <Button
+                android:id="@+id/act_plant_details_add_qualification"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Add Qualification"
+                android:textAppearance="?android:textAppearanceSmall"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -123,7 +130,8 @@
             <ListView
                 android:id="@+id/act_plant_details_qualification_list"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:divider="@null"/>
 
         </LinearLayout>
         </LinearLayout>

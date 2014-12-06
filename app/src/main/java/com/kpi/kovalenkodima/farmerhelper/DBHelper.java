@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.kpi.kovalenkodima.farmerhelper.model.Field;
 import com.kpi.kovalenkodima.farmerhelper.model.Plant;
+import com.kpi.kovalenkodima.farmerhelper.model.Qualification;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
         if (INSTANCE == null) {
             synchronized (DBHelper.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new DBHelper(context,DATABASE_NAME,null,DATABASE_VERSION);
+                    INSTANCE = new DBHelper(context, DATABASE_NAME, null, DATABASE_VERSION);
                 }
             }
         }
@@ -53,22 +54,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void insertPlant(Plant plant) {
         ContentValues cv = new ContentValues(2);
-        cv.put("TechnologyName",plant.technologicalMap.name);
-        cv.put("TechnologyMonth",plant.technologicalMap.month);
+        cv.put("TechnologyName", plant.technologicalMap.name);
+        cv.put("TechnologyMonth", plant.technologicalMap.month);
         cv.put("TechnologyProcessingTime", plant.technologicalMap.processingTime);
-        cv.put("TechnologyFuelNeeded",plant.technologicalMap.fuelNeeded);
+        cv.put("TechnologyFuelNeeded", plant.technologicalMap.fuelNeeded);
         long technologicalMapId = getWritableDatabase().insert("TechnologyMap", null, cv);
         cv.clear();
-        cv.put("PlantName",plant.name);
-        cv.put("Plant_fk_Technology",technologicalMapId);
+        cv.put("PlantName", plant.name);
+        cv.put("Plant_fk_Technology", technologicalMapId);
 
-        getWritableDatabase().insert("Plant",null,cv);
+        getWritableDatabase().insert("Plant", null, cv);
     }
 
     public List<Plant> getAllPlants() {
         List<Plant> fields = new ArrayList<>();
         Cursor c = getReadableDatabase().rawQuery(
-                "SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId",null);
+                "SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId", null);
         if (c.moveToFirst()) {
             do {
                 fields.add(Plant.fromCursor(c));
@@ -79,9 +80,9 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public Plant getPlantById(Integer id) {
-        String [] selectionArgs = {"" + id};
+        String[] selectionArgs = {"" + id};
         Cursor c = getReadableDatabase()
-                .rawQuery("SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId where PlantId=?",selectionArgs);
+                .rawQuery("SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId where PlantId=?", selectionArgs);
         if (c.moveToFirst()) {
             return Plant.fromCursor(c);
         } else {
@@ -91,16 +92,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void insertField(Field field) {
         ContentValues cv = new ContentValues(3);
-        cv.put("FieldName",field.name);
+        cv.put("FieldName", field.name);
         cv.put("FieldAddress", field.address);
         cv.put("Field_fk_Plant", field.plantId);
 
-        getWritableDatabase().insert("Field",null,cv);
+        getWritableDatabase().insert("Field", null, cv);
     }
 
     public List<Field> getAllFields() {
         List<Field> fields = new ArrayList<>();
-        Cursor c = getReadableDatabase().query("Field",null,null,null,null,null,null);
+        Cursor c = getReadableDatabase().query("Field", null, null, null, null, null, null);
         if (c.moveToFirst()) {
             do {
                 fields.add(Field.fromCursor(c));
@@ -109,11 +110,52 @@ public class DBHelper extends SQLiteOpenHelper {
         return fields;
     }
 
+    public void insertQualification(Qualification q) {
+        ContentValues cv = new ContentValues();
+        cv.put("QualificationName",q.name);
+        cv.put("QualificationSalary",q.salary);
+        getWritableDatabase().insert("Qualification",null,cv);
+    }
+
+    public void insertQualificationRequirement(Integer technologyId, Integer qualificationId) {
+        ContentValues cv = new ContentValues(2);
+        cv.put("fk_TechnologyMap", technologyId);
+        cv.put("fk_Qualification", qualificationId);
+        getWritableDatabase().insert("RequiresQualification",null,cv);
+    }
+
+    public List<Qualification> getQualificationsForTechnology(Integer technologyId) {
+        String [] selectionArgs = {"" + technologyId};
+        Cursor c = getReadableDatabase().rawQuery("SELECT * FROM Qualification JOIN RequiresQualification ON RequiresQualification.fk_Qualification=Qualification.QualificationId WHERE RequiresQualification.fk_TechnologyMap=?",selectionArgs);
+
+        List<Qualification> qs = new ArrayList<>();
+        if (c.moveToFirst()) {
+            do {
+                qs.add(Qualification.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return qs;
+    }
+
+    public void removeQualificationRequirement(Integer technologyId, Integer qualificationId) {
+        String [] whereArgs = {"" +technologyId, "" + qualificationId};
+        getWritableDatabase().delete("RequiresQualification","fk_TechnologyMap=? AND fk_Qualification=?",whereArgs);
+    }
+
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
 
 
-
+    public List<Qualification> getAllQualifications() {
+        List<Qualification> qs = new ArrayList<>();
+        Cursor c = getReadableDatabase().query("Qualification", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                qs.add(Qualification.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return qs;
+    }
 }

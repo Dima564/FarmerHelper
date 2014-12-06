@@ -12,6 +12,7 @@ public class Plant {
 
     public static Plant fromCursor(Cursor c) {
         TechnologicalMap map = new TechnologicalMap();
+        map.id = c.getInt(c.getColumnIndex("TechnologyId"));
         map.name = c.getString(c.getColumnIndex("TechnologyName"));
         map.month = c.getInt(c.getColumnIndex("TechnologyMonth"));
         map.processingTime = c.getInt(c.getColumnIndex("TechnologyProcessingTime"));

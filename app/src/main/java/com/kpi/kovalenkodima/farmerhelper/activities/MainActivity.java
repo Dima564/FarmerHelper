@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 
 import com.kpi.kovalenkodima.farmerhelper.fragments.PlantsFragment;
 import com.kpi.kovalenkodima.farmerhelper.R;
+import com.kpi.kovalenkodima.farmerhelper.fragments.QualificationsFragment;
 import com.kpi.kovalenkodima.farmerhelper.fragments.WorkersFragment;
 import com.kpi.kovalenkodima.farmerhelper.fragments.FieldsFragment;
 import com.kpi.kovalenkodima.farmerhelper.fragments.NavigationDrawerFragment;
@@ -19,6 +20,7 @@ public class MainActivity extends ActionBarActivity
     public static final int FRAG_FIELDS = 0;
     public static final int FRAG_PLANTS = 1;
     public static final int FRAG_WORKERS = 2;
+    public static final int FRAG_QUALIFICATIONS = 3;
 
     /**
      * Fragment managing the behaviors, interactions and presentation of the navigation drawer.
@@ -60,6 +62,9 @@ public class MainActivity extends ActionBarActivity
                 break;
             case FRAG_WORKERS:
                 fragment = new WorkersFragment();
+                break;
+            case FRAG_QUALIFICATIONS:
+                fragment = new QualificationsFragment();
                 break;
             default:
                 fragment = new FieldsFragment();

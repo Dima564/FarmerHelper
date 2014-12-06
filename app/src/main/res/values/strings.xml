@@ -19,5 +19,8 @@
     <string name="field_name_hint">Field name</string>
     <string name="field_address_hint">Field Address</string>
     <string name="act_new_plant_add">Add Plant</string>
+    <string name="qualification_salary">Salary</string>
+    <string name="qualification_name">Name</string>
+    <string name="new_qualification">New Qualification</string>
 
 </resources>
