@@ -1304,8 +1304,9 @@ containing a value of this type.
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int drawer_shadow=0x7f020033;
-        public static final int ic_drawer=0x7f020034;
-        public static final int ic_launcher=0x7f020035;
+        public static final int ic_action_explore=0x7f020034;
+        public static final int ic_drawer=0x7f020035;
+        public static final int ic_launcher=0x7f020036;
     }
     public static final class id {
         public static final int action_bar=0x7f080033;
@@ -1316,13 +1317,12 @@ containing a value of this type.
         public static final int action_bar_subtitle=0x7f080021;
         public static final int action_bar_title=0x7f080020;
         public static final int action_context_bar=0x7f080034;
-        public static final int action_example=0x7f080046;
         public static final int action_menu_divider=0x7f080002;
         public static final int action_menu_presenter=0x7f080003;
         public static final int action_mode_bar=0x7f080030;
         public static final int action_mode_bar_stub=0x7f08002f;
         public static final int action_mode_close_button=0x7f080022;
-        public static final int action_settings=0x7f080045;
+        public static final int action_settings=0x7f08004a;
         public static final int activity_chooser_view_content=0x7f080023;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
@@ -1340,6 +1340,11 @@ containing a value of this type.
         public static final int end=0x7f080014;
         public static final int expand_activities_button=0x7f080024;
         public static final int expanded_menu=0x7f08002a;
+        public static final int field_address_edit_text=0x7f080048;
+        public static final int field_name_edit_text=0x7f080047;
+        public static final int frag_field_list_add_item_menu=0x7f080049;
+        public static final int frag_field_list_item_sub_title=0x7f080045;
+        public static final int frag_field_list_item_title=0x7f080044;
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f080028;
@@ -1365,7 +1370,7 @@ containing a value of this type.
         public static final int search_plate=0x7f08003b;
         public static final int search_src_text=0x7f08003c;
         public static final int search_voice_btn=0x7f080040;
-        public static final int section_label=0x7f080044;
+        public static final int section_label=0x7f080046;
         public static final int shortcut=0x7f08002c;
         public static final int showCustom=0x7f08000f;
         public static final int showHome=0x7f080010;
@@ -1408,13 +1413,15 @@ containing a value of this type.
         public static final int abc_search_view=0x7f030015;
         public static final int abc_simple_dropdown_hint=0x7f030016;
         public static final int activity_main=0x7f030017;
-        public static final int fragment_main=0x7f030018;
-        public static final int fragment_navigation_drawer=0x7f030019;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001a;
+        public static final int fields_list_item=0x7f030018;
+        public static final int fragment_main=0x7f030019;
+        public static final int fragment_navigation_drawer=0x7f03001a;
+        public static final int new_field_dialog=0x7f03001b;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001c;
     }
     public static final class menu {
-        public static final int global=0x7f0c0000;
-        public static final int main=0x7f0c0001;
+        public static final int frag_fields=0x7f0c0000;
+        public static final int global=0x7f0c0001;
     }
     public static final class string {
         public static final int abc_action_bar_home_description=0x7f0a0000;
@@ -1434,12 +1441,22 @@ containing a value of this type.
         public static final int abc_shareactionprovider_share_with_application=0x7f0a000e;
         public static final int action_example=0x7f0a000f;
         public static final int action_settings=0x7f0a0010;
-        public static final int app_name=0x7f0a0011;
-        public static final int navigation_drawer_close=0x7f0a0012;
-        public static final int navigation_drawer_open=0x7f0a0013;
-        public static final int title_section1=0x7f0a0014;
-        public static final int title_section2=0x7f0a0015;
-        public static final int title_section3=0x7f0a0016;
+        public static final int add_field=0x7f0a0011;
+        public static final int app_name=0x7f0a0012;
+        public static final int cancel=0x7f0a0013;
+        public static final int field_address_hint=0x7f0a0014;
+        public static final int field_name_hint=0x7f0a0015;
+        public static final int frag_field_list_add_item_title=0x7f0a0016;
+        public static final int nav_drawer_section_fields=0x7f0a0017;
+        public static final int nav_drawer_section_plants=0x7f0a0018;
+        public static final int nav_drawer_section_workers=0x7f0a0019;
+        public static final int navigation_drawer_close=0x7f0a001a;
+        public static final int navigation_drawer_open=0x7f0a001b;
+        public static final int new_field_dialog_title=0x7f0a001c;
+        public static final int sql_create_table_plants=0x7f0a001d;
+        public static final int title_section1=0x7f0a001e;
+        public static final int title_section2=0x7f0a001f;
+        public static final int title_section3=0x7f0a0020;
     }
     public static final class style {
         /**  Customize your theme here. 

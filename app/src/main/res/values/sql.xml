@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="sql_create_table_plants">
+        CREATE TABLE Field (
+          FieldId INTEGER AUTO_INCREMENT,
+          Name TEXT,
+          Address TEXT,
+          fk_Plant INT,
+          PRIMARY KEY (FieldId),
+          FOREIGN KEY (fk_Plant) REFERENCES Plant(PlantId)
+        )
+    </string>
+</resources>

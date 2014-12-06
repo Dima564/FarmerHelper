@@ -167,9 +167,32 @@
     <eat-comment/>
     <string name="action_example">Example action</string>
     <string name="action_settings">Settings</string>
+    <string name="add_field">Add Field</string>
     <string name="app_name">FarmerHelper</string>
+    <string name="cancel">Cancel</string>
+    <string name="field_address_hint">Field Address</string>
+    <string name="field_name_hint">Field name</string>
+    <string name="frag_field_list_add_item_title">Add Field</string>
+    <string name="nav_drawer_section_fields">Fields</string>
+    <string name="nav_drawer_section_plants">Plants</string>
+    <string name="nav_drawer_section_workers">Workers</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="new_field_dialog_title">New Field</string>
+    <!-- From: file:/Users/kovalenkodima/Developer/FarmerHelper/app/src/main/res/values/sql.xml -->
+    <eat-comment/>
+    <string name="sql_create_table_plants">
+        CREATE TABLE Field (
+          FieldId INTEGER AUTO_INCREMENT,
+          Name TEXT,
+          Address TEXT,
+          fk_Plant INT,
+          PRIMARY KEY (FieldId),
+          FOREIGN KEY (fk_Plant) REFERENCES Plant(PlantId)
+        )
+    </string>
+    <!-- From: file:/Users/kovalenkodima/Developer/FarmerHelper/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
     <string name="title_section3">Section 3</string>
