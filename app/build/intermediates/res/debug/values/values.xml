@@ -181,14 +181,49 @@
     <string name="new_field_dialog_title">New Field</string>
     <!-- From: file:/Users/kovalenkodima/Developer/FarmerHelper/app/src/main/res/values/sql.xml -->
     <eat-comment/>
-    <string name="sql_create_table_plants">
+    <string name="sql_create_table_fields">
         CREATE TABLE Field (
-          FieldId INTEGER AUTO_INCREMENT,
           Name TEXT,
           Address TEXT,
           fk_Plant INT,
-          PRIMARY KEY (FieldId),
-          FOREIGN KEY (fk_Plant) REFERENCES Plant(PlantId)
+          FOREIGN KEY (fk_Plant) REFERENCES Plant(_id)
+        )
+    </string>
+    <string name="sql_create_table_plants">
+        CREATE TABLE Plant (
+            Name TEXT,
+            fk_Technology INTEGER,
+            FOREIGN KEY (fk_Technology) REFERENCES TechnologyMap(_id)
+        )
+    </string>
+    <string name="sql_create_table_qualification">
+        CREATE TABLE Qualification (
+            Name TEXT,
+            Salary INTEGER
+        )
+    </string>
+    <string name="sql_create_table_requires_qualification">
+        CREATE TABLE RequiresQualification (
+            fk_TechnologyMap INTEGER NOT NULL,
+            fk_Qualification INTEGER NOT NULL,
+            FOREIGN KEY (fk_TechnologyMap) REFERENCES TechnologyMap(_id),
+            FOREIGN KEY (fk_Qualification) REFERENCES Qualification(_id)
+        )
+    </string>
+    <string name="sql_create_table_technology_map">
+        CREATE TABLE TechnologyMap (
+            Name TEXT,
+            Month INTEGER,
+            ProcessingTime INTEGER,
+            FuelNeeded INTEGER
+        )
+    </string>
+    <string name="sql_create_table_worker">
+        CREATE TABLE Worker (
+            Name TEXT,
+            Age INTEGER,
+            fk_Qualification INTEGER,
+            FOREIGN KEY (fk_Qualification) REFERENCES Qualification(_id)
         )
     </string>
     <!-- From: file:/Users/kovalenkodima/Developer/FarmerHelper/app/src/main/res/values/strings.xml -->

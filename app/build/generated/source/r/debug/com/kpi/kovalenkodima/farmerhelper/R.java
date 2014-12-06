@@ -1344,9 +1344,9 @@ containing a value of this type.
         public static final int expanded_menu=0x7f08002a;
         public static final int field_address_edit_text=0x7f08004a;
         public static final int field_name_edit_text=0x7f080049;
-        public static final int fields_frag_add_btn=0x7f080047;
         public static final int frag_field_list_item_sub_title=0x7f080045;
         public static final int frag_field_list_item_title=0x7f080044;
+        public static final int frag_plants_add_btn=0x7f080047;
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f080028;
@@ -1418,10 +1418,11 @@ containing a value of this type.
         public static final int activity_main=0x7f030017;
         public static final int fields_list_item=0x7f030018;
         public static final int frag_fields=0x7f030019;
-        public static final int fragment_main=0x7f03001a;
-        public static final int fragment_navigation_drawer=0x7f03001b;
-        public static final int new_field_dialog=0x7f03001c;
-        public static final int support_simple_spinner_dropdown_item=0x7f03001d;
+        public static final int frag_plants=0x7f03001a;
+        public static final int fragment_main=0x7f03001b;
+        public static final int fragment_navigation_drawer=0x7f03001c;
+        public static final int new_field_dialog=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
@@ -1456,10 +1457,15 @@ containing a value of this type.
         public static final int navigation_drawer_close=0x7f0a001a;
         public static final int navigation_drawer_open=0x7f0a001b;
         public static final int new_field_dialog_title=0x7f0a001c;
-        public static final int sql_create_table_plants=0x7f0a001d;
-        public static final int title_section1=0x7f0a001e;
-        public static final int title_section2=0x7f0a001f;
-        public static final int title_section3=0x7f0a0020;
+        public static final int sql_create_table_fields=0x7f0a001d;
+        public static final int sql_create_table_plants=0x7f0a001e;
+        public static final int sql_create_table_qualification=0x7f0a001f;
+        public static final int sql_create_table_requires_qualification=0x7f0a0020;
+        public static final int sql_create_table_technology_map=0x7f0a0021;
+        public static final int sql_create_table_worker=0x7f0a0022;
+        public static final int title_section1=0x7f0a0023;
+        public static final int title_section2=0x7f0a0024;
+        public static final int title_section3=0x7f0a0025;
     }
     public static final class style {
         /**  Customize your theme here. 

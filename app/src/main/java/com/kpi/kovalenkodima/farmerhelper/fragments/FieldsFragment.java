@@ -1,4 +1,4 @@
-package com.kpi.kovalenkodima.farmerhelper;
+package com.kpi.kovalenkodima.farmerhelper.fragments;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -15,6 +15,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.kpi.kovalenkodima.farmerhelper.DBHelper;
+import com.kpi.kovalenkodima.farmerhelper.R;
 import com.kpi.kovalenkodima.farmerhelper.model.Field;
 
 import java.util.List;
@@ -36,7 +38,7 @@ public class FieldsFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         listView = (ListView) view.findViewById(R.id.list);
-        addFieldButton = (ImageButton) view.findViewById(R.id.fields_frag_add_btn);
+        addFieldButton = (ImageButton) view.findViewById(R.id.frag_plants_add_btn);
 
     }
 
@@ -44,7 +46,7 @@ public class FieldsFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         if (adapter == null) {
-            adapter = new FieldsAdapter(getActivity(),DBHelper.getInstance(getActivity()).getAllFields());
+            adapter = new FieldsAdapter(getActivity(), DBHelper.getInstance(getActivity()).getAllFields());
         }
         listView.setAdapter(adapter);
 

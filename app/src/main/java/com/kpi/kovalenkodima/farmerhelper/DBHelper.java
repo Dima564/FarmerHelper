@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.kpi.kovalenkodima.farmerhelper.model.Field;
+import com.kpi.kovalenkodima.farmerhelper.model.Plant;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_fields));
         db.execSQL(context.getResources().getString(R.string.sql_create_table_plants));
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_technology_map));
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_worker));
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_requires_qualification));
+        db.execSQL(context.getResources().getString(R.string.sql_create_table_qualification));
+    }
+
+    public void insertPlant(Plant plant) {
+
     }
 
     public void insertField(Field field) {

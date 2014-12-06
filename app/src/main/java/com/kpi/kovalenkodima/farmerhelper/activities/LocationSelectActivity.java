@@ -1,4 +1,4 @@
-package com.kpi.kovalenkodima.farmerhelper;
+package com.kpi.kovalenkodima.farmerhelper.activities;
 
 import android.support.v7.app.ActionBarActivity;
 
