@@ -5,4 +5,14 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="FarmerHelper.TextView.Header" parent="android:Widget.TextView">
+        <!--<item name="android:background">@drawable/header_text_view_bg</item>-->
+        <item name="android:textAppearance">?android:textAppearanceLarge</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="FarmerHelper.Edit.Field" parent="Base.Widget.AppCompat.EditText">
+        <item name="android:background">@drawable/edit_field</item>
+    </style>
+
 </resources>

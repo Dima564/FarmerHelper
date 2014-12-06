@@ -52,6 +52,29 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public void insertPlant(Plant plant) {
+        ContentValues cv = new ContentValues(2);
+        cv.put("Name",plant.technologicalMap.name);
+        cv.put("Month",plant.technologicalMap.month);
+        cv.put("ProcessingTime", plant.technologicalMap.processingTime);
+        cv.put("FuelNeeded",plant.technologicalMap.fuelNeeded);
+        long technologicalMapId = getWritableDatabase().insert("TechnologyMap", null, cv);
+        cv.clear();
+        cv.put("Name",plant.name);
+        cv.put("fk_Technology",technologicalMapId);
+
+        getWritableDatabase().insert("Plant",null,cv);
+    }
+
+    public List<Plant> getAllPlants() {
+        List<Plant> fields = new ArrayList<>();
+        Cursor c = getReadableDatabase().rawQuery(
+                "SELECT * FROM Plant JOIN TechnologyMap on Plant.fk_Technology=TechnologyMap._ROWID_",null);
+        if (c.moveToFirst()) {
+            do {
+                fields.add(Plant.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return fields;
 
     }
 

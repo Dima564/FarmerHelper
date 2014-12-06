@@ -18,5 +18,6 @@
     <string name="cancel">Cancel</string>
     <string name="field_name_hint">Field name</string>
     <string name="field_address_hint">Field Address</string>
+    <string name="act_new_plant_add">Add Plant</string>
 
 </resources>
