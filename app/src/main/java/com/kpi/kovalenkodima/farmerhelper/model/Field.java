@@ -18,9 +18,9 @@ public class Field {
 
     public static Field fromCursor(Cursor c) {
         return new Field(
-                c.getString(c.getColumnIndex("Name")),
-                c.getString(c.getColumnIndex("Address")),
-                c.getInt(c.getColumnIndex("fk_Plant")));
+                c.getString(c.getColumnIndex("FieldName")),
+                c.getString(c.getColumnIndex("FieldAddress")),
+                c.getInt(c.getColumnIndex("Field_fk_Plant")));
     }
 
 

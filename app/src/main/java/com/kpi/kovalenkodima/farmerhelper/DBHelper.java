@@ -53,14 +53,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public void insertPlant(Plant plant) {
         ContentValues cv = new ContentValues(2);
-        cv.put("Name",plant.technologicalMap.name);
-        cv.put("Month",plant.technologicalMap.month);
-        cv.put("ProcessingTime", plant.technologicalMap.processingTime);
-        cv.put("FuelNeeded",plant.technologicalMap.fuelNeeded);
+        cv.put("TechnologyName",plant.technologicalMap.name);
+        cv.put("TechnologyMonth",plant.technologicalMap.month);
+        cv.put("TechnologyProcessingTime", plant.technologicalMap.processingTime);
+        cv.put("TechnologyFuelNeeded",plant.technologicalMap.fuelNeeded);
         long technologicalMapId = getWritableDatabase().insert("TechnologyMap", null, cv);
         cv.clear();
-        cv.put("Name",plant.name);
-        cv.put("fk_Technology",technologicalMapId);
+        cv.put("PlantName",plant.name);
+        cv.put("Plant_fk_Technology",technologicalMapId);
 
         getWritableDatabase().insert("Plant",null,cv);
     }
@@ -68,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public List<Plant> getAllPlants() {
         List<Plant> fields = new ArrayList<>();
         Cursor c = getReadableDatabase().rawQuery(
-                "SELECT * FROM Plant JOIN TechnologyMap on Plant.fk_Technology=TechnologyMap._ROWID_",null);
+                "SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId",null);
         if (c.moveToFirst()) {
             do {
                 fields.add(Plant.fromCursor(c));
@@ -78,11 +78,22 @@ public class DBHelper extends SQLiteOpenHelper {
 
     }
 
+    public Plant getPlantById(Integer id) {
+        String [] selectionArgs = {"" + id};
+        Cursor c = getReadableDatabase()
+                .rawQuery("SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId where PlantId=?",selectionArgs);
+        if (c.moveToFirst()) {
+            return Plant.fromCursor(c);
+        } else {
+            return null;
+        }
+    }
+
     public void insertField(Field field) {
         ContentValues cv = new ContentValues(3);
-        cv.put("Name",field.name);
-        cv.put("Address", field.address);
-        cv.put("fk_Plant", field.plantId);
+        cv.put("FieldName",field.name);
+        cv.put("FieldAddress", field.address);
+        cv.put("Field_fk_Plant", field.plantId);
 
         getWritableDatabase().insert("Field",null,cv);
     }

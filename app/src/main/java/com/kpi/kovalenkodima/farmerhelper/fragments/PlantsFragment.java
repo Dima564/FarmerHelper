@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -16,6 +17,7 @@ import android.widget.TextView;
 
 import com.kpi.kovalenkodima.farmerhelper.DBHelper;
 import com.kpi.kovalenkodima.farmerhelper.R;
+import com.kpi.kovalenkodima.farmerhelper.activities.PlantDetailsActivity;
 import com.kpi.kovalenkodima.farmerhelper.activities.NewPlantActivity;
 import com.kpi.kovalenkodima.farmerhelper.model.Plant;
 
@@ -56,6 +58,15 @@ public class PlantsFragment extends android.support.v4.app.Fragment {
             adapter = new PlantsAdapter(getActivity(), DBHelper.getInstance(getActivity()).getAllPlants());
         }
         list.setAdapter(adapter);
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                adapter.getItem(position);
+                Intent i = new Intent(getActivity(),PlantDetailsActivity.class);
+                i.putExtra(PlantDetailsActivity.EXTRA_PLANT_ID, adapter.getItem(position).id);
+                startActivity(i);
+            }
+        });
     }
 
     @Override
@@ -67,7 +78,8 @@ public class PlantsFragment extends android.support.v4.app.Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_NEW_PLANT && resultCode == Activity.RESULT_OK) {
-            list.setAdapter(new PlantsAdapter(getActivity(), DBHelper.getInstance(getActivity()).getAllPlants()));
+            adapter = new PlantsAdapter(getActivity(), DBHelper.getInstance(getActivity()).getAllPlants());
+            list.setAdapter(adapter);
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
@@ -90,5 +102,7 @@ public class PlantsFragment extends android.support.v4.app.Fragment {
 
             return convertView;
         }
+
+
     }
 }

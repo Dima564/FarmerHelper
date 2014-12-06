@@ -2,43 +2,48 @@
 <resources>
     <string name="sql_create_table_fields">
         CREATE TABLE Field (
-          Name TEXT,
-          Address TEXT,
-          fk_Plant INT,
-          FOREIGN KEY (fk_Plant) REFERENCES Plant(_id)
+          FieldId INTEGER PRIMARY KEY ASC,
+          FieldName TEXT,
+          FieldAddress TEXT,
+          Field_fk_Plant INT,
+          FOREIGN KEY (Field_fk_Plant) REFERENCES Plant(PlantId)
         )
     </string>
 
     <string name="sql_create_table_plants">
         CREATE TABLE Plant (
-            Name TEXT,
-            fk_Technology INTEGER,
-            FOREIGN KEY (fk_Technology) REFERENCES TechnologyMap(_id)
+            PlantId INTEGER PRIMARY KEY ASC,
+            PlantName TEXT,
+            Plant_fk_Technology INTEGER,
+            FOREIGN KEY (Plant_fk_Technology) REFERENCES TechnologyMap(TechnologyId)
         )
     </string>
 
     <string name="sql_create_table_technology_map">
         CREATE TABLE TechnologyMap (
-            Name TEXT,
-            Month INTEGER,
-            ProcessingTime INTEGER,
-            FuelNeeded INTEGER
+            TechnologyId INTEGER PRIMARY KEY ASC,
+            TechnologyName TEXT,
+            TechnologyMonth INTEGER,
+            TechnologyProcessingTime INTEGER,
+            TechnologyFuelNeeded INTEGER
         )
     </string>
 
     <string name="sql_create_table_worker">
         CREATE TABLE Worker (
-            Name TEXT,
-            Age INTEGER,
-            fk_Qualification INTEGER,
-            FOREIGN KEY (fk_Qualification) REFERENCES Qualification(_id)
+            WorkerId INTEGER PRIMARY KEY ASC,
+            WorkerName TEXT,
+            WorkerAge INTEGER,
+            Worker_fk_Qualification INTEGER,
+            FOREIGN KEY (Worker_fk_Qualification) REFERENCES Qualification(QualificationId)
         )
     </string>
 
     <string name="sql_create_table_qualification">
         CREATE TABLE Qualification (
-            Name TEXT,
-            Salary INTEGER
+            QualificationId INTEGER PRIMARY KEY ASC,
+            QualificationName TEXT,
+            QualificationSalary INTEGER
         )
     </string>
 
@@ -46,8 +51,8 @@
         CREATE TABLE RequiresQualification (
             fk_TechnologyMap INTEGER NOT NULL,
             fk_Qualification INTEGER NOT NULL,
-            FOREIGN KEY (fk_TechnologyMap) REFERENCES TechnologyMap(_id),
-            FOREIGN KEY (fk_Qualification) REFERENCES Qualification(_id)
+            FOREIGN KEY (fk_TechnologyMap) REFERENCES TechnologyMap(TechnologyId),
+            FOREIGN KEY (fk_Qualification) REFERENCES Qualification(QualificationId)
         )
     </string>
 

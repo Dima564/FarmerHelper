@@ -15,14 +15,30 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.kpi.kovalenkodima.farmerhelper.activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.kpi.kovalenkodima.farmerhelper.activities.NewPlantActivity" />
+        <activity
+            android:name="com.kpi.kovalenkodima.farmerhelper.activities.NewPlantActivity"
+            android:parentActivityName="com.kpi.kovalenkodima.farmerhelper.activities.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.kpi.kovalenkodima.farmerhelper.activities.PlantDetailsActivity"
+            android:parentActivityName="com.kpi.kovalenkodima.farmerhelper.activities.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
