@@ -5,15 +5,14 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ListFragment;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.kpi.kovalenkodima.farmerhelper.model.Field;
@@ -23,14 +22,22 @@ import java.util.List;
 /**
  * Created by kovalenkodima on 12/5/14.
  */
-public class FieldsFragment extends ListFragment {
+public class FieldsFragment extends Fragment {
     FieldsAdapter adapter;
+    ListView listView;
+    ImageButton addFieldButton;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-        setRetainInstance(true);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.frag_fields,container,false);
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        listView = (ListView) view.findViewById(R.id.list);
+        addFieldButton = (ImageButton) view.findViewById(R.id.fields_frag_add_btn);
+
     }
 
     @Override
@@ -39,24 +46,16 @@ public class FieldsFragment extends ListFragment {
         if (adapter == null) {
             adapter = new FieldsAdapter(getActivity(),DBHelper.getInstance(getActivity()).getAllFields());
         }
-        setListAdapter(adapter);
+        listView.setAdapter(adapter);
+
+        addFieldButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAddDialog();
+            }
+        });
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.frag_fields,menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.frag_field_list_add_item_menu) {
-            showAddDialog();
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 
     private void showAddDialog() {
 
@@ -76,7 +75,7 @@ public class FieldsFragment extends ListFragment {
                         if (!name.isEmpty() && !address.isEmpty()) {
                             DBHelper.getInstance(getActivity()).insertField(new Field(name,address,null));
                         }
-                        setListAdapter(new FieldsAdapter(getActivity(),
+                        listView.setAdapter(new FieldsAdapter(getActivity(),
                                 DBHelper.getInstance(getActivity()).getAllFields()));
 
                     }
