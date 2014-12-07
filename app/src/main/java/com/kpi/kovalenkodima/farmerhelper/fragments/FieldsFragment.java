@@ -78,7 +78,7 @@ public class FieldsFragment extends Fragment {
                         String address = addressEditText.getText().toString();
 
                         if (!name.isEmpty() && !address.isEmpty()) {
-                            DBHelper.getInstance(getActivity()).insertField(new Field(name,address,null));
+                            DBHelper.getInstance(getActivity()).insertField(new Field(name,address,-1));
                         }
                         listView.setAdapter(new FieldsAdapter(getActivity(),
                                 DBHelper.getInstance(getActivity()).getAllFields()));

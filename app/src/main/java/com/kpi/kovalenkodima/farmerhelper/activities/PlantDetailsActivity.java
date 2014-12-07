@@ -1,9 +1,11 @@
 package com.kpi.kovalenkodima.farmerhelper.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -46,7 +48,17 @@ public class PlantDetailsActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle("Plant Details");
         setContentView(R.layout.act_plant_details);
-        Integer plantId = getIntent().getIntExtra(EXTRA_PLANT_ID,0);
+
+        Integer plantId;
+        if(savedInstanceState == null) {
+            plantId = getIntent().getIntExtra(EXTRA_PLANT_ID,-1);
+        }
+        else {
+            plantId = savedInstanceState.getInt("saved_id");
+        }
+
+        plant = DBHelper.getInstance(this).getPlantById(plantId);
+
 
         plantImageView = (ImageView) findViewById(R.id.act_plant_details_plant_image);
         plantNameTextView = (TextView) findViewById(R.id.act_plant_details_plant_name);
@@ -56,7 +68,7 @@ public class PlantDetailsActivity extends ActionBarActivity {
         processingTimeTextView = (TextView) findViewById(R.id.act_plant_details_technology_processing_time);
         qualificationsListView = (ListView) findViewById(R.id.act_plant_details_qualification_list);
 
-        plant = DBHelper.getInstance(this).getPlantById(plantId);
+
 
         plantNameTextView.setText(plant.name);
         technologyNameTextView.setText(plant.technologicalMap.name);
@@ -64,11 +76,20 @@ public class PlantDetailsActivity extends ActionBarActivity {
         fuelNeededTextView.setText("" + plant.technologicalMap.fuelNeeded + " l.");
         processingTimeTextView.setText("" + plant.technologicalMap.processingTime + " days");
 
+        findViewById(R.id.act_plant_details_fields_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(PlantDetailsActivity.this,PlantFieldsActivity.class);
+                i.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                startActivity(i);
+            }
+        });
+
         findViewById(R.id.act_plant_details_add_qualification).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 DialogFragment dialogFragment = new QualificationPickerDialogFragment();
-                dialogFragment.show(getSupportFragmentManager(),"qualification_picker");
+                dialogFragment.show(getSupportFragmentManager(), "qualification_picker");
             }
         });
 
@@ -81,7 +102,12 @@ public class PlantDetailsActivity extends ActionBarActivity {
         qualificationsListView.setAdapter(new QualificationAdapter(this,DBHelper.getInstance(this).getQualificationsForTechnology(plant.technologicalMap.id)));
     }
 
-
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d("TAG","SavedInstanceState");
+        outState.putInt("saved_id",plant.id);
+        super.onSaveInstanceState(outState);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -99,9 +99,32 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert("Field", null, cv);
     }
 
+    public void plantCropsOnField(Integer plantId, Integer fieldId) {
+        String [] whereArgs = {"" + fieldId};
+        ContentValues cv = new ContentValues();
+        cv.put("Field_fk_Plant",plantId);
+        getWritableDatabase().update("Field",cv,"FieldId=?",whereArgs);
+    }
+
+    public void emptyField(Integer fieldId) {
+        plantCropsOnField(-1,fieldId);
+    }
+
     public List<Field> getAllFields() {
         List<Field> fields = new ArrayList<>();
         Cursor c = getReadableDatabase().query("Field", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                fields.add(Field.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return fields;
+    }
+
+    public List<Field> getFieldsWithPlant(Integer plantId) {
+        String [] whereArgs = {"" + plantId};
+        List<Field> fields = new ArrayList<>();
+        Cursor c = getReadableDatabase().query("Field",null,"Field_fk_Plant=?",whereArgs,null,null,null);
         if (c.moveToFirst()) {
             do {
                 fields.add(Field.fromCursor(c));

@@ -10,6 +10,8 @@
         <activity
             android:name=".activities.MainActivity"
             android:label="@string/app_name"
+            android:theme="@style/AppTheme"
+
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +23,7 @@
         <activity
             android:name=".activities.NewPlantActivity"
             android:parentActivityName=".activities.MainActivity"
+
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -34,6 +37,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.PlantFieldsActivity"
+            android:parentActivityName=".activities.PlantDetailsActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.PlantDetailsActivity" />
         </activity>
     </application>
 

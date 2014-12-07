@@ -200,7 +200,7 @@
           FieldId INTEGER PRIMARY KEY ASC,
           FieldName TEXT,
           FieldAddress TEXT,
-          Field_fk_Plant INT,
+          Field_fk_Plant INTEGER,
           FOREIGN KEY (Field_fk_Plant) REFERENCES Plant(PlantId)
         )
     </string>
