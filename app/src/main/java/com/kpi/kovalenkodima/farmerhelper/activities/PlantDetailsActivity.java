@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.kpi.kovalenkodima.farmerhelper.DBHelper;
 import com.kpi.kovalenkodima.farmerhelper.R;
-import com.kpi.kovalenkodima.farmerhelper.Utils;
 import com.kpi.kovalenkodima.farmerhelper.fragments.QualificationPickerDialogFragment;
 import com.kpi.kovalenkodima.farmerhelper.model.Plant;
 import com.kpi.kovalenkodima.farmerhelper.model.Qualification;
@@ -61,7 +60,7 @@ public class PlantDetailsActivity extends ActionBarActivity {
 
 
         plantImageView = (ImageView) findViewById(R.id.act_plant_details_plant_image);
-        plantNameTextView = (TextView) findViewById(R.id.act_plant_details_plant_name);
+        plantNameTextView = (TextView) findViewById(R.id.act_worker_details_worker_name);
         technologyNameTextView = (TextView) findViewById(R.id.act_plant_details_technology_name);
         technologyMonthTextView = (TextView) findViewById(R.id.act_plant_details_technology_month);
         fuelNeededTextView = (TextView) findViewById(R.id.act_plant_details_technology_fuel);
@@ -112,7 +111,7 @@ public class PlantDetailsActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Utils.navigateUp(this);
+            onBackPressed();
             return true;
         }
         return super.onOptionsItemSelected(item);

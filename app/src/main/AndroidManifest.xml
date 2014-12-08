@@ -47,6 +47,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.PlantDetailsActivity" />
         </activity>
+
+
+        <activity
+            android:name=".activities.NewWorkerActivity"
+            android:parentActivityName=".activities.MainActivity"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

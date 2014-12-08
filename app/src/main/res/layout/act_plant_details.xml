@@ -22,7 +22,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/act_plant_details_plant_name"
+                    android:id="@+id/act_worker_details_worker_name"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"

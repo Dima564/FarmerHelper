@@ -48,6 +48,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.PlantDetailsActivity" />
         </activity>
+        <activity
+            android:name="com.kpi.kovalenkodima.farmerhelper.activities.NewWorkerActivity"
+            android:parentActivityName="com.kpi.kovalenkodima.farmerhelper.activities.MainActivity"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

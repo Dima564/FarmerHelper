@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.kpi.kovalenkodima.farmerhelper.model.Field;
 import com.kpi.kovalenkodima.farmerhelper.model.Plant;
 import com.kpi.kovalenkodima.farmerhelper.model.Qualification;
+import com.kpi.kovalenkodima.farmerhelper.model.Worker;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -180,5 +181,29 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         return qs;
+    }
+
+    public List<Worker> getAllWorkers() {
+        List<Worker> workers = new ArrayList<>();
+        Cursor c = getReadableDatabase().query("Worker", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                workers.add(Worker.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return workers;
+    }
+
+    public Cursor getAllQualificationsCursor(){
+        return getReadableDatabase().rawQuery("SELECT QualificationId as _id, QualificationName FROM Qualification",null);
+//        return getReadableDatabase().query("Qualification",null,null,null,null,null,null);
+    }
+
+    public void insertWorker(Worker w) {
+        ContentValues cv = new ContentValues();
+        cv.put("WorkerName",w.name);
+        cv.put("WorkerAge",w.age);
+        cv.put("Worker_fk_Qualification",w.qualificationID);
+        getWritableDatabase().insert("Worker",null,cv);
     }
 }

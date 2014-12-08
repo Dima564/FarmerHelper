@@ -89,10 +89,11 @@ public class QualificationsFragment extends Fragment {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = inflater.inflate(android.R.layout.simple_list_item_1,parent,false);
+                convertView = inflater.inflate(android.R.layout.simple_list_item_2,parent,false);
             }
 
             ((TextView) convertView.findViewById(android.R.id.text1)).setText(getItem(position).name);
+            ((TextView) convertView.findViewById(android.R.id.text2)).setText(getItem(position).salary + "");
             return convertView;
         }
     }

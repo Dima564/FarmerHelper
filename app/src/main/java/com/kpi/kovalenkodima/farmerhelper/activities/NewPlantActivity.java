@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.kpi.kovalenkodima.farmerhelper.DBHelper;
 import com.kpi.kovalenkodima.farmerhelper.R;
-import com.kpi.kovalenkodima.farmerhelper.Utils;
 import com.kpi.kovalenkodima.farmerhelper.model.Plant;
 import com.kpi.kovalenkodima.farmerhelper.model.TechnologicalMap;
 
@@ -41,7 +40,7 @@ public class NewPlantActivity extends ActionBarActivity {
         technologyNameEditText = (EditText) findViewById(R.id.act_new_plant_technology_name);
         fuelEditText = (EditText) findViewById(R.id.act_new_plant_fuel);
         timeEditText = (EditText) findViewById(R.id.act_new_plant_processing_time);
-        monthSpinner = (Spinner) findViewById(R.id.act_new_plant_spinner);
+        monthSpinner = (Spinner) findViewById(R.id.act_new_worker_qualification_spinner);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item) {
             @Override
@@ -78,11 +77,10 @@ public class NewPlantActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Utils.navigateUp(this);
+            onBackPressed();
             return true;
         } else if (item.getItemId() == R.id.act_new_plant_done) {
             addNewPlant();
-
             return true;
         }
         return super.onOptionsItemSelected(item);

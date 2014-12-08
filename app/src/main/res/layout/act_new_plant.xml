@@ -50,7 +50,7 @@
         android:orientation="horizontal">
 
         <Spinner
-            android:id="@+id/act_new_plant_spinner"
+            android:id="@+id/act_new_worker_qualification_spinner"
             android:layout_width="100dp"
             android:layout_height="wrap_content" />
 
