@@ -83,7 +83,9 @@ public class DBHelper extends SQLiteOpenHelper {
     public Plant getPlantById(Integer id) {
         String[] selectionArgs = {"" + id};
         Cursor c = getReadableDatabase()
-                .rawQuery("SELECT * FROM Plant JOIN TechnologyMap on Plant.Plant_fk_Technology=TechnologyMap.TechnologyId where PlantId=?", selectionArgs);
+                .rawQuery("SELECT * FROM Plant JOIN TechnologyMap on" +
+                        " Plant.Plant_fk_Technology=" +
+                        "TechnologyMap.TechnologyId where PlantId=?", selectionArgs);
         if (c.moveToFirst()) {
             return Plant.fromCursor(c);
         } else {
@@ -91,14 +93,6 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public void insertField(Field field) {
-        ContentValues cv = new ContentValues(3);
-        cv.put("FieldName", field.name);
-        cv.put("FieldAddress", field.address);
-        cv.put("Field_fk_Plant", field.plantId);
-
-        getWritableDatabase().insert("Field", null, cv);
-    }
 
     public void plantCropsOnField(Integer plantId, Integer fieldId) {
         String [] whereArgs = {"" + fieldId};
@@ -111,16 +105,7 @@ public class DBHelper extends SQLiteOpenHelper {
         plantCropsOnField(-1,fieldId);
     }
 
-    public List<Field> getAllFields() {
-        List<Field> fields = new ArrayList<>();
-        Cursor c = getReadableDatabase().query("Field", null, null, null, null, null, null);
-        if (c.moveToFirst()) {
-            do {
-                fields.add(Field.fromCursor(c));
-            } while (c.moveToNext());
-        }
-        return fields;
-    }
+
 
     public List<Field> getFieldsWithPlant(Integer plantId) {
         String [] whereArgs = {"" + plantId};
@@ -132,6 +117,15 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         return fields;
+    }
+
+
+    public void insertWorker(Worker w) {
+        ContentValues cv = new ContentValues();
+        cv.put("WorkerName",w.name);
+        cv.put("WorkerAge",w.age);
+        cv.put("Worker_fk_Qualification",w.qualificationID);
+        getWritableDatabase().insert("Worker",null,cv);
     }
 
     public void insertQualification(Qualification q) {
@@ -148,6 +142,15 @@ public class DBHelper extends SQLiteOpenHelper {
         getWritableDatabase().insert("RequiresQualification",null,cv);
     }
 
+    public void insertField(Field field) {
+        ContentValues cv = new ContentValues(3);
+        cv.put("FieldName", field.name);
+        cv.put("FieldAddress", field.address);
+        cv.put("Field_fk_Plant", field.plantId);
+
+        getWritableDatabase().insert("Field", null, cv);
+    }
+
     public List<Qualification> getQualificationsForTechnology(Integer technologyId) {
         String [] selectionArgs = {"" + technologyId};
         Cursor c = getReadableDatabase().rawQuery("SELECT * FROM Qualification JOIN RequiresQualification ON RequiresQualification.fk_Qualification=Qualification.QualificationId WHERE RequiresQualification.fk_TechnologyMap=?",selectionArgs);
@@ -159,16 +162,6 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (c.moveToNext());
         }
         return qs;
-    }
-
-    public void removeQualificationRequirement(Integer technologyId, Integer qualificationId) {
-        String [] whereArgs = {"" +technologyId, "" + qualificationId};
-        getWritableDatabase().delete("RequiresQualification","fk_TechnologyMap=? AND fk_Qualification=?",whereArgs);
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
 
@@ -194,16 +187,41 @@ public class DBHelper extends SQLiteOpenHelper {
         return workers;
     }
 
-    public Cursor getAllQualificationsCursor(){
-        return getReadableDatabase().rawQuery("SELECT QualificationId as _id, QualificationName FROM Qualification",null);
-//        return getReadableDatabase().query("Qualification",null,null,null,null,null,null);
+    public List<Field> getAllFields() {
+        List<Field> fields = new ArrayList<>();
+        Cursor c = getReadableDatabase().query("Field", null, null, null, null, null, null);
+        if (c.moveToFirst()) {
+            do {
+                fields.add(Field.fromCursor(c));
+            } while (c.moveToNext());
+        }
+        return fields;
     }
 
-    public void insertWorker(Worker w) {
-        ContentValues cv = new ContentValues();
-        cv.put("WorkerName",w.name);
-        cv.put("WorkerAge",w.age);
-        cv.put("Worker_fk_Qualification",w.qualificationID);
-        getWritableDatabase().insert("Worker",null,cv);
+
+    public Cursor getAllQualificationsCursor(){
+        return getReadableDatabase().rawQuery("SELECT QualificationId as _id, QualificationName FROM Qualification",null);
     }
+
+
+
+    public void removeQualificationRequirement(Integer technologyId, Integer qualificationId) {
+        String [] whereArgs = {"" +technologyId, "" + qualificationId};
+        getWritableDatabase().delete("RequiresQualification","fk_TechnologyMap=? AND fk_Qualification=?",whereArgs);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    public Cursor getNeededQualifications() {
+        return getReadableDatabase().rawQuery("SELECT QualificationId, COUNT(0) " +
+                "FROM Qualification JOIN" +
+                " RequiresQualification ON " +
+                "Qualification.QualificationId=RequiresQualification.fk_Qualification" +
+                " GROUP BY QualificationId",null);
+    }
+
+
 }

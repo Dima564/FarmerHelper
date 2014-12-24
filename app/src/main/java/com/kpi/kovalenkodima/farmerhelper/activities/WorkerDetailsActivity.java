@@ -22,9 +22,5 @@ public class WorkerDetailsActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.act_worker_details);
-
-
     }
-
-
 }

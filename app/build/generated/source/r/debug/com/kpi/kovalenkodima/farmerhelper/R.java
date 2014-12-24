@@ -1319,7 +1319,7 @@ containing a value of this type.
         public static final int ripple=0x7f02003e;
     }
     public static final class id {
-        public static final int act_new_plant_done=0x7f08006b;
+        public static final int act_new_plant_done=0x7f08006d;
         public static final int act_new_plant_fuel=0x7f080044;
         public static final int act_new_plant_name=0x7f080041;
         public static final int act_new_plant_processing_time=0x7f080045;
@@ -1356,11 +1356,12 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f080030;
         public static final int action_mode_bar_stub=0x7f08002f;
         public static final int action_mode_close_button=0x7f080022;
-        public static final int action_settings=0x7f08006c;
+        public static final int action_settings=0x7f08006e;
         public static final int activity_chooser_view_content=0x7f080023;
         public static final int always=0x7f080016;
         public static final int beginning=0x7f080013;
         public static final int bottom=0x7f08001e;
+        public static final int calculate_all_costs_btn=0x7f080064;
         public static final int checkbox=0x7f08002b;
         public static final int collapseActionView=0x7f080017;
         public static final int container=0x7f08005d;
@@ -1374,13 +1375,14 @@ containing a value of this type.
         public static final int end=0x7f080014;
         public static final int expand_activities_button=0x7f080024;
         public static final int expanded_menu=0x7f08002a;
-        public static final int field_address_edit_text=0x7f080069;
-        public static final int field_name_edit_text=0x7f080068;
+        public static final int field_address_edit_text=0x7f08006b;
+        public static final int field_name_edit_text=0x7f08006a;
+        public static final int frag_analysis_fuel_cost_edit=0x7f080063;
         public static final int frag_field_list_item_sub_title=0x7f080062;
         public static final int frag_field_list_item_title=0x7f080061;
-        public static final int frag_plants_add_btn=0x7f080063;
-        public static final int frag_qualifications_add_btn=0x7f080065;
-        public static final int frag_workers_add_btn=0x7f080066;
+        public static final int frag_plants_add_btn=0x7f080065;
+        public static final int frag_qualifications_add_btn=0x7f080067;
+        public static final int frag_workers_add_btn=0x7f080068;
         public static final int home=0x7f080004;
         public static final int homeAsUp=0x7f08000d;
         public static final int icon=0x7f080028;
@@ -1411,7 +1413,7 @@ containing a value of this type.
         public static final int search_plate=0x7f08003b;
         public static final int search_src_text=0x7f08003c;
         public static final int search_voice_btn=0x7f080040;
-        public static final int section_label=0x7f080067;
+        public static final int section_label=0x7f080069;
         public static final int shortcut=0x7f08002c;
         public static final int showCustom=0x7f08000f;
         public static final int showHome=0x7f080010;
@@ -1419,9 +1421,9 @@ containing a value of this type.
         public static final int split_action_bar=0x7f080007;
         public static final int submit_area=0x7f08003e;
         public static final int tabMode=0x7f08000b;
-        public static final int text=0x7f080064;
+        public static final int text=0x7f080066;
         public static final int text1=0x7f080053;
-        public static final int text2=0x7f08006a;
+        public static final int text2=0x7f08006c;
         public static final int title=0x7f080029;
         public static final int top=0x7f08001f;
         public static final int up=0x7f080008;
@@ -1465,18 +1467,19 @@ containing a value of this type.
         public static final int activity_main=0x7f03001d;
         public static final int dialog_new_qualification=0x7f03001e;
         public static final int fields_list_item=0x7f03001f;
-        public static final int frag_fields=0x7f030020;
-        public static final int frag_plants=0x7f030021;
-        public static final int frag_plants_list_item=0x7f030022;
-        public static final int frag_qualification_picker=0x7f030023;
-        public static final int frag_qualifications=0x7f030024;
-        public static final int frag_workers=0x7f030025;
-        public static final int fragment_main=0x7f030026;
-        public static final int fragment_navigation_drawer=0x7f030027;
-        public static final int new_field_dialog=0x7f030028;
-        public static final int plant_field_list_header=0x7f030029;
-        public static final int support_simple_spinner_dropdown_item=0x7f03002a;
-        public static final int workers_list_item=0x7f03002b;
+        public static final int frag_analysis=0x7f030020;
+        public static final int frag_fields=0x7f030021;
+        public static final int frag_plants=0x7f030022;
+        public static final int frag_plants_list_item=0x7f030023;
+        public static final int frag_qualification_picker=0x7f030024;
+        public static final int frag_qualifications=0x7f030025;
+        public static final int frag_workers=0x7f030026;
+        public static final int fragment_main=0x7f030027;
+        public static final int fragment_navigation_drawer=0x7f030028;
+        public static final int new_field_dialog=0x7f030029;
+        public static final int plant_field_list_header=0x7f03002a;
+        public static final int support_simple_spinner_dropdown_item=0x7f03002b;
+        public static final int workers_list_item=0x7f03002c;
     }
     public static final class menu {
         public static final int act_new_plant=0x7f0c0000;

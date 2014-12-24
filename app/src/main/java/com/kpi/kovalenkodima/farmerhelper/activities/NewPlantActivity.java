@@ -20,6 +20,8 @@ import com.kpi.kovalenkodima.farmerhelper.model.TechnologicalMap;
 /**
  * Created by kovalenkodima on 12/6/14.
  */
+
+
 public class NewPlantActivity extends ActionBarActivity {
 
     EditText plantEditText;

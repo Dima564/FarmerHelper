@@ -24,12 +24,10 @@ public class NewWorkerActivity extends ActionBarActivity {
     EditText ageEditText;
     Spinner qualificationSpinner;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         setContentView(R.layout.act_new_worker);
         nameEditText = (EditText) findViewById(R.id.act_new_worker_name);
         photoImageView = (ImageView) findViewById(R.id.act_new_worker_image);
@@ -38,7 +36,9 @@ public class NewWorkerActivity extends ActionBarActivity {
 
         String [] from = {"QualificationName"};
         int [] to = {android.R.id.text1};
-        qualificationSpinner.setAdapter(new SimpleCursorAdapter(this,android.R.layout.simple_spinner_dropdown_item, DBHelper.getInstance(this).getAllQualificationsCursor(),from,to));
+        qualificationSpinner.setAdapter(new SimpleCursorAdapter(
+                this,android.R.layout.simple_spinner_dropdown_item,
+                DBHelper.getInstance(this).getAllQualificationsCursor(),from,to));
     }
 
     @Override
@@ -46,7 +46,6 @@ public class NewWorkerActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.act_new_plant,menu);
         return super.onCreateOptionsMenu(menu);
     }
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -65,9 +64,7 @@ public class NewWorkerActivity extends ActionBarActivity {
         String age = ageEditText.getText().toString();
         qualificationSpinner.getSelectedItem();
         Cursor c =((Cursor) qualificationSpinner.getSelectedItem());
-
         Integer qId = c.getInt(c.getColumnIndex("_id"));
-
         if (name.isEmpty() || age.isEmpty()) {
             Toast.makeText(this,"Please, fill all fields",Toast.LENGTH_SHORT).show();
         } else {
@@ -81,8 +78,5 @@ public class NewWorkerActivity extends ActionBarActivity {
             setResult(RESULT_OK);
             finish();
         }
-
     }
-
-
 }

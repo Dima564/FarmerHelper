@@ -27,7 +27,6 @@ public class MainActivity extends ActionBarActivity
      */
     private NavigationDrawerFragment mNavigationDrawerFragment;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,5 +70,4 @@ public class MainActivity extends ActionBarActivity
         }
         fragmentManager.beginTransaction().replace(R.id.container,fragment).commit();
     }
-
 }
